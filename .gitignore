@@ -1,0 +1,19 @@
+# Build tooling dependencies — reinstall with `npm install` in .tools/
+.tools/node_modules/
+
+# Machine-local Claude Code permission allowlist.
+.claude/settings.local.json
+
+# Regenerable intermediate: `node .tools/make-earth-texture.mjs` recreates it.
+.tools/earth-rings.json
+
+# Enquiries captured by the contact form.
+logisetu/storage/*
+!logisetu/storage/.gitignore
+
+# OS / editor noise
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.swp
