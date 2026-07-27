@@ -290,30 +290,65 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* The source is a bright daylight render; grading it toward the site's
-     night-navy is what lets white headline text sit on it at all. */
-  filter: brightness(.52) contrast(1.08) saturate(1.12) hue-rotate(-4deg);
+  /* Only a light grade — enough to seat the daylight footage in the site's
+     palette without hiding it. Legibility is handled by the scrim and the
+     headline's own shadow, not by crushing the video. */
+  filter: brightness(.86) contrast(1.04) saturate(1.06);
 }
 
 /*
- * Two-part scrim: a horizontal ramp that buries the headline side, and a
- * vertical one that anchors the header and the cards at the bottom.
- * Measured against the brightest frames of the footage.
+ * Two-part scrim: a horizontal ramp under the headline, and a vertical one to
+ * anchor the header and the cards. Kept as light as the measured contrast
+ * allows so the facility stays visible across the whole frame.
  */
 .hero--film .hero-veil {
   background:
     linear-gradient(100deg,
-      rgba(8, 20, 40, .96) 0%,
-      rgba(8, 20, 40, .9) 26%,
-      rgba(9, 22, 44, .62) 52%,
-      rgba(10, 26, 51, .42) 78%,
-      rgba(10, 26, 51, .38) 100%),
+      rgba(8, 20, 40, .62) 0%,
+      rgba(8, 20, 40, .44) 26%,
+      rgba(9, 22, 44, .2) 48%,
+      rgba(10, 26, 51, .07) 70%,
+      rgba(10, 26, 51, .03) 100%),
     linear-gradient(to bottom,
-      rgba(10, 26, 51, .72) 0%,
-      rgba(10, 26, 51, .3) 26%,
-      rgba(10, 26, 51, .34) 62%,
-      rgba(10, 26, 51, .78) 100%);
+      rgba(10, 26, 51, .5) 0%,
+      rgba(10, 26, 51, .12) 26%,
+      rgba(10, 26, 51, .14) 60%,
+      rgba(10, 26, 51, .55) 100%);
 }
+
+/*
+ * Localised pool of shade behind the copy only.
+ *
+ * A global scrim strong enough to beat the white warehouses would also bury
+ * the footage. This confines the darkening to where the text actually sits and
+ * feathers out to nothing, so the rest of the frame stays bright.
+ */
+.hero--film .hero-copy { position: relative; }
+.hero--film .hero-copy::before {
+  content: "";
+  position: absolute;
+  inset: -18% -46% -16% -50%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(62% 66% at 36% 50%,
+    rgba(6, 16, 34, .95) 0%,
+    rgba(6, 16, 34, .9) 44%,
+    rgba(6, 16, 34, .66) 68%,
+    rgba(6, 16, 34, .28) 86%,
+    transparent 100%);
+}
+
+/* Lets the scrim stay light: the shadow buys contrast at the glyph edges
+   rather than across the whole panel. */
+.hero--film .hero-title {
+  text-shadow: 0 2px 18px rgba(6, 16, 34, .85), 0 1px 3px rgba(6, 16, 34, .6);
+}
+.hero--film .hero-lead {
+  color: rgba(255, 255, 255, .92);
+  text-shadow: 0 1px 12px rgba(6, 16, 34, .8);
+}
+.hero--film .eyebrow-pill,
+.hero--film .hero-pills li { backdrop-filter: blur(10px); }
 
 @media (max-width: 860px) {
   /* Portrait crops the 16:9 film hard; keep the facility centred. */

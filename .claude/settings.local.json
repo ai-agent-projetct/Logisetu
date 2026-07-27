@@ -44,7 +44,10 @@
       "Bash(git ls-remote *)",
       "Bash(git rm *)",
       "Bash(git add *)",
-      "Bash(git -c 'user.name=LogiSetu Build' -c user.email=vinothaigen@gmail.com commit -q -m ' *)"
+      "Bash(git -c 'user.name=LogiSetu Build' -c user.email=vinothaigen@gmail.com commit -q -m ' *)",
+      "Bash(curl -s -o /dev/null -m 20 -w \"site: %{http_code}\\\\n\" http://localhost:8000/)",
+      "Bash(curl -s -o /dev/null -m 30 -w \"site: %{http_code}\\\\n\" http://localhost:8000/)",
+      "Bash(break)"
     ]
   }
 }
